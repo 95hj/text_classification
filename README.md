@@ -1,5 +1,5 @@
 # text classification
-문장 분류 긍부정 분류 kaggle competition baseline-code 모듈화
+문장 긍부정 분류 kaggle competition baseline-code 모듈화
 
 ## to clone and test
 run "for_clone_and_test.ipynb"
