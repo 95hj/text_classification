@@ -1,3 +1,4 @@
+import os
 from tqdm import tqdm
 import numpy as np
 import torch
@@ -24,7 +25,10 @@ class Trainer():
     def compute_acc(self, predictions, target_labels):
         return (np.array(predictions) == np.array(target_labels)).mean()
     
-    def train(self, train_epoch=1):
+    def train(self, train_epoch=1, filename=None):
+        if not os.path.isdir("model"):
+            os.mkdir("model")
+        
         lowest_valid_loss = 9999.
         for epoch in range(train_epoch):
             with tqdm(self.train_loader, unit="batch") as tepoch:
@@ -90,7 +94,7 @@ class Trainer():
                         valid_loss = sum(valid_losses) / len(valid_losses)
                         if lowest_valid_loss > valid_loss:
                             print('Acc for model which have lower valid loss: ', acc)
-                            torch.save(self.model.state_dict(), "./data/pytorch_model.bin")
+                            torch.save(self.model.state_dict(), f"./model/pytorch_model_{filename}.bin")
     
     def test(self):
         with torch.no_grad():
