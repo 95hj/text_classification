@@ -1,2 +1,4 @@
 /model/*.bin
 /submission/*.csv
+/plots/*.png
+/wandb
